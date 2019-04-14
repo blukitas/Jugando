@@ -1,4 +1,4 @@
-package main
+package primerTirito
 
 import "fmt"
 
