@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func slicesExample() {
 	// Slices es como las listas u otro tipo más complejo del tipo array,
 	// 		que deja hacer operaciones más potentes
 
