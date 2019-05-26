@@ -10,7 +10,7 @@
 #           [F(n), F(n+1), true] or {F(n), F(n+1), 1} or (F(n), F(n+1), True)
 # depending on the language if F(n) * F(n+1) = prod.
 
-# If you don't find two consecutive F(m) verifying F(m) * F(m+1) = prodyou will return
+# If you don't find two consecutive F(m) verifying F(m) * F(m+1) = prod you will return
 
 # [F(m), F(m+1), false] or {F(n), F(n+1), 0} or (F(n), F(n+1), False)
 # F(m) being the smallest one such as F(m) * F(m+1) > prod.
@@ -21,10 +21,26 @@
 
 # productFib(800) # should return [34, 55, false], 
 #                 # since F(8) = 21, F(9) = 34, F(10) = 55 and 21 * 34 < 800 < 34 * 55
-# Notes: Not useful here but we can tell how to choose the number n up to which to go: we can use the "golden ratio" phi which is (1 + sqrt(5))/2 knowing that F(n) is asymptotic to: phi^n / sqrt(5). That gives a possible upper bound to n.
+# Notes: Not useful here but we can tell how to choose the number n up to which to go: we can use the "golden ratio" phi
+#   which is (1 + sqrt(5))/2 knowing that F(n) is asymptotic to: phi^n / sqrt(5). That gives a possible upper bound to n.
 
 # You can see examples in "Example test".
 
 # References
 # http://en.wikipedia.org/wiki/Fibonacci_number
 # http://oeis.org/A000045
+
+def productFib(n):
+    fib = 0
+    a = 0
+    b = 1
+    while a * b < n:
+        aux = b
+        b += a
+        a = aux
+        fib += 1
+    return [a, b, a * b == n]
+
+print(productFib(1870))
+print(productFib(800))
+print(productFib(714))

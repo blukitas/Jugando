@@ -4,3 +4,8 @@
 # For example, the string "This website is for losers LOL!" would become "Ths wbst s fr lsrs LL!".
 # Note: for this kata y isn't considered a vowel.
 # https://www.codewars.com/kata/disemvowel-trolls/python
+
+def disemvowelTrolls(n):
+    return ''.join(x for x in n if(x not in['a', 'e', 'i', 'o', 'u']))
+
+print(disemvowelTrolls('hola como esta todo? tas bien'))

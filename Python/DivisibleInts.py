@@ -22,3 +22,21 @@
 # #Input: A non negative integer.
 # #Output: The number of times you found an integer that was evenly divisible with N.
 # https://www.codewars.com/kata/566859a83557837d9700001a
+import itertools
+
+
+def divisibleInts(n):
+    div = [ x for x in str(n)]
+    print("Divisible: ")
+    print("----------------------------------------------------------------------")
+    print div
+    for i in range(1, len(div) - 1):
+        print("Combinaciones de %s" % i)
+        print("----------------------------------------------------------------------")
+        for j in list(itertools.combinations(div, i)):
+             divisor = int(''.join(c for c in j))
+             modulo = n % divisor
+             print("%s divide %s y sobran %s" %(divisor, n, modulo))
+             print("----------------------------------------------------------------------")
+
+divisibleInts(877692)
