@@ -19,7 +19,7 @@
 # sum_dig_pow(90, 100) == []
 
 
-def sum_dig_pow(ini, fin):
+def sum_dig_pow(ini, fin+1):
     salida = []
     for i in range(ini, fin):
         j = i

@@ -6,6 +6,6 @@
 # https://www.codewars.com/kata/disemvowel-trolls/python
 
 def disemvowelTrolls(n):
-    return ''.join(x for x in n if(x not in['a', 'e', 'i', 'o', 'u']))
+    return ''.join(x for x in n if(x.lower() not in['a', 'e', 'i', 'o', 'u']))
 
 print(disemvowelTrolls('hola como esta todo? tas bien'))

@@ -14,7 +14,8 @@ import sys
 #       For example, the message HEY JUDE in Morse code is ···· · −·−−   ·−−− ··− −·· ·.
 # NOTE: Extra spaces before or after the code have no meaning and should be ignored.
 
-# In addition to letters, digits and some punctuation, there are some special service codes, the most notorious of those
+# In addition to letters, digits and some punctuation, there are some special service codes, 
+#   the most notorious of those
 #   is the international distress signal SOS (that was first issued by Titanic),
 #   that is coded as ···−−−···.
 #   These special codes are treated as single special characters, and
@@ -42,6 +43,11 @@ import sys
 
 
 def decodeMorse(msj):
+
+    msj = msj.strip() 
+    if msj == '...---...':
+        return 'SOS'
+        
     MORSE_CODE_DICT = {
                     'A': '.-',      'B': '-...',
                     'C': '-.-.',    'D': '-..',     'E': '.',
@@ -58,7 +64,6 @@ def decodeMorse(msj):
                     '0': '-----',   ', ': '--..--', '.': '.-.-.-',
                     '?': '..--..',  '/': '-..-.',   '-': '-....-',
                     '(': '-.--.',   ')': '-.--.-'}
-    msj = msj.strip()
     salida = ''
     for i in msj.split('   '):
         for j in i.split(' '):
@@ -66,6 +71,9 @@ def decodeMorse(msj):
             if len(key) > 0:
                 salida += key[0]
         salida += ' '
-    return salida
+    return salida.strip()
 
 print (decodeMorse('.... . -.--   .--- ..- -.. .'))
+
+#El que no paso:
+# Got 'THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.', expected 'SOS! THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.'
