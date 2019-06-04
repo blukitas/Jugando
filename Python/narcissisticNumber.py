@@ -7,6 +7,7 @@
 # The Challenge:
 # Your code must return true or false depending upon whether the given number is a Narcissistic number in base 10.
 # Error checking for text strings or other invalid inputs is not required, only valid integers will be passed into the function.
+#https://www.codewars.com/kata/narcissistic-numbers/train/python
 
 
 def is_narcissistic(num):
