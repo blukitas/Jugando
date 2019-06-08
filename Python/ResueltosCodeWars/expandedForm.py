@@ -19,4 +19,4 @@ def expanded_form(n):
     return salida[3:]
 
 
-print expanded_form(70304)
+print( expanded_form(70304))
