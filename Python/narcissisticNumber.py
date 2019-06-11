@@ -23,6 +23,6 @@ def is_narcissistic(num):
 
     return sum == num
 
-print (narcissistic(12))
-print (narcissistic(153))
-print (narcissistic(1634))
+print (is_narcissistic(12))
+print (is_narcissistic(153))
+print (is_narcissistic(1634))
