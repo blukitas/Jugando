@@ -45,9 +45,6 @@ import sys
 def decodeMorse(msj):
 
     msj = msj.strip() 
-    if msj == '...---...':
-        return 'SOS'
-        
     MORSE_CODE_DICT = {
                     'A': '.-',      'B': '-...',
                     'C': '-.-.',    'D': '-..',     'E': '.',
@@ -63,10 +60,12 @@ def decodeMorse(msj):
                     '7': '--...',   '8': '---..',   '9': '----.',
                     '0': '-----',   ', ': '--..--', '.': '.-.-.-',
                     '?': '..--..',  '/': '-..-.',   '-': '-....-',
-                    '(': '-.--.',   ')': '-.--.-'}
-    salida = ''
+                    '(': '-.--.',   ')': '-.--.-',  '!': '-.-.--'}
     for i in msj.split('   '):
         for j in i.split(' '):
+            if (j == '...---...' ):
+                salida += 'SOS'
+
             key = [k for k, v in MORSE_CODE_DICT.items() if(v == j)]
             if len(key) > 0:
                 salida += key[0]
@@ -74,6 +73,3 @@ def decodeMorse(msj):
     return salida.strip()
 
 print (decodeMorse('.... . -.--   .--- ..- -.. .'))
-
-#El que no paso:
-# Got 'THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.', expected 'SOS! THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.'
