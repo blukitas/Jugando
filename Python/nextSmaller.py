@@ -13,3 +13,30 @@
 # some tests will include very large numbers.
 # test data only employs positive integers.
 # The function you write for this challenge is the inverse of this kata: "Next bigger number with the same digits."
+
+
+def nextSmaller(n):
+    s = str(n)
+    so = sorted(s)
+    iso = int(''.join(so))
+    while n > iso:
+        n -= 1
+        if sorted(str(n)) == so:
+            return n
+    return -1
+
+    # if sorted(str(n)) == sorted(s):
+    #     return n
+    # if n < int(''.join(sorted(s))):
+    #     return -1
+    # return n
+
+
+print(nextSmaller(907))
+print(nextSmaller(531))
+print(nextSmaller(135))
+print(nextSmaller(2071))
+print(nextSmaller(414))
+print(nextSmaller(123456798))
+print(nextSmaller(123456789))
+print(nextSmaller(1234567908))

@@ -41,40 +41,64 @@
 #       but may be empty. (Not everyone thinks numbers spell funny words...)
 #   You should only ever output 0, 1, or 2.
 
-def is_interesting(n, lista):
-    #    3-or-more digit numbers that meet one or more of the following criteria:
-    #   Every digit is the same number: 1111
-    #   The digits are sequential, incementing†: 1234
-    #   The digits are sequential, decrementing‡: 4321
-    #   The digits are a palindrome: 1221 or 73837
-    #   The digits match one of the values in the awesome_phrases array
-    #   † For incrementing sequences, 0 should come after 9, and not before 1, as in 7890.
-    #   ‡ For decrementing sequences, 0 should come after 1, and not before 9, as in 3210.
 
+def is_interesting(n, lista):
+    salida = is_interesting_2(n)
+
+    if len(lista) > 0:
+        return salida
+    else:
+        if salida > 0 and (n in lista or n + 1 in lista or n + 2 in lista):
+            return salida
+    return 0
+
+
+def is_interesting_2(n):
+    # TODO: Lista, falta el phrase.
     #   A number is only interesting if it is greater than 99!
     if n < 100:
         return 0
-    #   Any digit followed by all zeros: 100, 90000
-    elif sum(str(n[1:])) == 0:
-        return 2
-    if sum([int(i) for i in str(n)]) / len(str(n)) == n % 10:
-        return 2
+    salida = 2
+    if check_digit_zeros(n):
+        return salida
+    if check_same_digit(n):
+        return salida
+    if check_incremental(n):
+        return salida
+    if check_decremental(n):
+        return salida
+    if check_palindrome(n):
+        return salida
+
+    salida -= 1
+    for i in range(1, 3):
+        if check_digit_zeros(n+i):
+            return salida
+        if check_same_digit(n+i):
+            return salida
+        if check_incremental(n+i):
+            return salida
+        if check_decremental(n+i):
+            return salida
+        if check_palindrome(n+i):
+            return salida
+    return 0
 
 
 def check_digit_zeros(n):
     return sum([int(x) for x in str(n)[1:]]) == 0
 
+
 def check_same_digit(n):
     s = str(n)
-    print(sum([1 for x in s if x == s]))
-    return sum([1 for x in s if x == s]) == len(s)
+    return len([1 for x in s if x == s[0]]) == len(s)
+
 
 def check_incremental(n):
     s = str(n)
     salida = True
-    for i in range(0, len(s)-1):
-        # TODO: Check a nivel dígito
-        salida &= (s[i] + 1 == s[i+1])
+    for i in range(0, len(s)-2):
+        salida &= ((int(s[i]) + 1) % 10 == int(s[i+1]))
 
     return salida
 
@@ -83,16 +107,16 @@ def check_decremental(n):
     s = str(n)
     salida = True
     for i in range(0, len(s)-1):
-        # TODO: Check a nivel dígito
-        salida &= (s[i] - 1 == s[i-1])
+        salida &= ((int(s[i]) + 9) % 10 == int(s[i+1]))
 
     return salida
+
 
 def check_palindrome(n):
     salida = True
     s = str(n)
-    t = len(s)
-    for i in range(0, t/2):
+    t = len(s) - 1
+    for i in range(0, int(t/2)):
         salida &= s[i] == s[t-i]
     return salida
 
@@ -100,6 +124,27 @@ def check_palindrome(n):
 # print(check_digit_zeros(12123))
 # print(check_digit_zeros(10000))
 # print(check_digit_zeros(80000))
-print(check_same_digit(12123))
-print(check_same_digit(51515))
-print(check_same_digit(88888))
+# print(check_same_digit(12123))
+# print(check_same_digit(51515))
+# print(check_same_digit(88888))
+# print(check_incremental(12121))
+# print(check_incremental(12345))
+# print(check_incremental(88888))
+# print(check_incremental(89012))
+# print(check_decremental(12121))
+# print(check_decremental(54321))
+# print(check_decremental(88888))
+# print(check_decremental(21098))
+# print(check_palindrome(12121))
+# print(check_palindrome(54321))
+# print(check_palindrome(88888))
+# print(check_palindrome(21098))
+
+print(is_interesting(11207, [])) # 0
+print(is_interesting(11208, [])) # 0
+print(is_interesting(11209, [])) # 1
+print(is_interesting(11210, [])) # 1
+print(is_interesting(11211, [])) # 2
+print(is_interesting(1335, [1337, 256])) # 1
+print(is_interesting(1336, [1337, 256])) # 1
+print(is_interesting(1337, [1337, 256])) # 2

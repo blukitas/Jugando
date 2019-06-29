@@ -17,32 +17,28 @@
 ##                salida.append(item)
 ##    return [x.replace('|', '') for x in salida]
 
-def permutations(s):
-    print("Inicio")
-    print("Palabra %s, len: %d" %(s, len(s)))
-    return permutaciones('', s).split('|')
 
-def permutaciones(salida, s):
-    print("Inicio recursividad")
-    print("Salida: %s, Palabra %s, len: %d" %(salida, s, len(s)))
-    if len(s) == 0:
-        return salida + '|'
-    for i in range(0, len(s)):
-        subs = ''.join(s[y] for y in range(0, len(s)) if y != i )
-        print("Subs: ")
-        print(subs)
-        # resultado = permutaciones(salida+s[i], subs)
-        # print("Resultado:")
-        # print(resultado)
-        # for j in resultado:
-        #     print(j)
-        #     item = s[i] + j
-        #     if salida.count(item) == 0:
-        #         salida+ += item
-    return salida
-    
+def permutations(a):
+    # Buscar heap algorithm
+    for p in permute(list(a)):
+        print ''.join(x for x in p)
+
+
+def permute(xs, low=0):
+    if low + 1 >= len(xs):
+        yield xs
+    else:
+        for p in permute(xs, low + 1):
+            yield p
+        for i in range(low + 1, len(xs)):
+            xs[low], xs[i] = xs[i], xs[low]
+            for p in permute(xs, low + 1):
+                yield p
+            xs[low], xs[i] = xs[i], xs[low]
+
+
 x = permutations('ab')
-# x = permutations('abab')
+x = permutations('abab')
 print("Fin")
 print("Resultado: ")
 print(x)
@@ -52,6 +48,4 @@ print(x)
 # print("Resultado: ")
 # print(x)
 
-#TODO: Mejorar performance
-
-
+# TODO: Mejorar performance

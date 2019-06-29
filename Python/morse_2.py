@@ -43,17 +43,43 @@
 # After you master this kata, you may try to Decode the Morse code, for real.
 
 
+# For example, the message HEY JUDE, that is ···· · −·−− ·−−− ··− −·· · may be received as follows:
+#   1100110011001100000011000000111111001100111111001111110000000000000011001111110011111100111111000000110011001111110000001111110011001100000011
 def  decodeBits(bits):
-    bits = bits.replace('0000001', '   ')
-    bits = bits.replace('111111', '-')
-    bits = bits.replace('11111', '-')
-    bits = bits.replace('11', '.')
-    bits = bits.replace('0', ' ')
+    bits = bits.replace('000', '   ')
+    bits = bits.replace('111', '-')
+    # bits = bits.replace('11111', '-')
     bits = bits.replace('1', '.')
-    bits = bits.replace('  ', '')
-    bits = bits.replace('   ', ' ')
-    # print(bits)
+    bits = bits.replace('0', '')
+    bits = bits.replace('      ', ' ')
+    bits = bits.replace('  ', '   ')
+    bits = bits.replace('--', '-')
+    bits = bits.replace('..', '.')
+    # bits = bits.replace('1', '.')
+    # bits = bits.replace('   ', ' ')
+    # bits = bits.replace('  ', '')
     return bits
+    # Version 1:
+    # bits = bits.replace('0000001', '   ')
+    # bits = bits.replace('111111', '-')
+    # bits = bits.replace('11111', '-')
+    # bits = bits.replace('11', '.')
+    # bits = bits.replace('0', '')
+    # bits = bits.replace('1', '.')
+    # bits = bits.replace('   ', ' ')
+    # bits = bits.replace('  ', '')
+    # Version 2:
+    # bits = bits.replace('000000', '   ')
+    # bits = bits.replace('111111', '-')
+    # bits = bits.replace('11111', '-')
+    # bits = bits.replace('11', '.')
+    # bits = bits.replace('0', '')
+
+
+# def decodeBits(bits):
+#     # ToDo: Accept 0's and 1's, return dots, dashes and spaces
+#     return bits.replace('111', '-').replace('000', ' ').replace('1', '.').replace('0', '')
+
 
 
 def decodeMorse(msj):
@@ -74,6 +100,7 @@ def decodeMorse(msj):
                     '0': '-----',   ', ': '--..--', '.': '.-.-.-',
                     '?': '..--..',  '/': '-..-.',   '-': '-....-',
                     '(': '-.--.',   ')': '-.--.-',  '!': '-.-.--'}
+    salida = ''
     for i in msj.split('   '):
         for j in i.split(' '):
             if (j == '...---...' ):
@@ -92,7 +119,8 @@ def decodeMorse(msj):
 # 11 =  '.'         | "Dot" – is 1 time unit long.
 # 111111 = '-'      | "Dash" – is 3 time units long.
 # | Pause between dots and dashes in a character – is 1 time unit long.
-decodeBits('1100110011001100000011000000111111001100111111001111110000000000000011001111110011111100111111000000110011001111110000001111110011001100000011')
+print(decodeBits('1100110011001100000011000000111111001100111111001111110000000000000011001111110011111100111111000000110011001111110000001111110011001100000011'))
+print(decodeMorse(decodeBits('1100110011001100000011000000111111001100111111001111110000000000000011001111110011111100111111000000110011001111110000001111110011001100000011')))
 
 
 # def decodeBits(bits):
