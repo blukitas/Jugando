@@ -20,9 +20,13 @@
 
 def permutations(a):
     # Buscar heap algorithm
+    out = []
     for p in permute(list(a)):
-        print ''.join(x for x in p)
+        palabra = ''.join(x for x in p)
+        if palabra not in out:
+            out.append(palabra)
 
+    return out
 
 def permute(xs, low=0):
     if low + 1 >= len(xs):
@@ -38,9 +42,13 @@ def permute(xs, low=0):
 
 
 x = permutations('ab')
+print("Fin - Resultado: ")
+print(x)
 x = permutations('abab')
-print("Fin")
-print("Resultado: ")
+print("Fin - Resultado: ")
+print(x)
+x = permutations('jay')
+print("Fin - Resultado: ")
 print(x)
 
 # x = permutations('abab')
