@@ -1,4 +1,5 @@
 ##def permutations(s):
+##    # TODO: Que funcione con un array de entrada
 ##    # print("Inicio")
 ##    # print("Palabra %s, len: %d" %(s, len(s)))
 ##    if len(s) == 0:
